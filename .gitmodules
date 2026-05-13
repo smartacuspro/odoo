@@ -1,4 +1,4 @@
 [submodule "addons/enterprise"]
 	path = addons/enterprise
-	url = https://github.com/your-org/enterprise.git
+	url = https://github.com/gainde2k/enterprise.git
 	sparseCheckout = odoo/addons/*
