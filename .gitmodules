@@ -2,3 +2,6 @@
 	path = addons/enterprise
 	url = https://github.com/gainde2k/enterprise.git
 	sparseCheckout = odoo/addons/*
+[submodule "addons/smartacus"]
+	path = addons/smartacus
+	url = https://github.com/smartacuspro/smartacus.git
