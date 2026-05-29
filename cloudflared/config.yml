@@ -1,0 +1,7 @@
+tunnel: b2568165-54c8-4144-bbd4-6a82e3edcfea
+credentials-file: /etc/cloudflared/credentials.json
+
+ingress:
+  - hostname: smartacus-dev.ordomatics.com
+    service: http://odoo:8069
+  - service: http_status:404

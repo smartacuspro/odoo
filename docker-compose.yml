@@ -45,6 +45,19 @@ services:
       retries: 10
       start_period: 120s
 
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --config /etc/cloudflared/config.yml --no-autoupdate run
+    volumes:
+      - ./cloudflared/config.yml:/etc/cloudflared/config.yml:ro
+      - ./cloudflared/credentials.json:/etc/cloudflared/credentials.json:ro
+    depends_on:
+      odoo:
+        condition: service_healthy
+    restart: unless-stopped
+    profiles:
+      - tunnel
+
 secrets:
   github_token:
     environment: GITHUB_TOKEN
