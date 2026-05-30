@@ -66,7 +66,7 @@ git add addons/.keep
 git commit -m "chore: placeholder for custom addons"
 ```
 
-Update `modules.cfg` to list any custom modules that should be installed/upgraded on deployment.
+Add your client module name at the bottom of `modules.cfg` (after `ordomatics`). The file ships with the full platform module list — do not remove existing entries.
 
 ### 5. Configure odoo.conf.template
 
@@ -150,6 +150,20 @@ docker compose up
 
 Access Odoo at `http://localhost:8069`.
 
+### Cloudflare Tunnel
+
+The compose stack includes a `cloudflared` service for exposing the local instance via a Cloudflare Tunnel. It is gated behind the `tunnel` profile and only starts when explicitly requested:
+
+```bash
+docker compose --profile tunnel up -d
+```
+
+Place your tunnel credentials in `cloudflared/credentials.json` and your tunnel config in `cloudflared/config.yml` before starting. The credentials file is gitignored and must never be committed.
+
+### Redis
+
+Redis is included in the compose stack for session storage (`SESSION_REDIS_HOST=redis`). It starts automatically with `docker compose up` and requires no extra configuration for local dev.
+
 ---
 
 ## File structure
@@ -161,20 +175,18 @@ Access Odoo at `http://localhost:8069`.
 │   │   └── deploy-helm/        # Reusable action: update helm values + push
 │   └── workflows/
 │       └── ci.yaml             # Multi-env CI/CD pipeline
-├── addons/                     # Git submodules — one per addon repo
-│   ├── whatsapp/
-│   ├── billing/
-│   ├── platform/
+├── addons/                     # Client-specific addon submodules (mounted as /mnt/extra-addons/client)
 │   ├── enterprise/
-│   └── oca/
-├── scripts/
-│   └── setup-odoo-modules.sh   # Module install/upgrade entrypoint
-├── Dockerfile
-├── entrypoint.sh
+│   └── smartacus/
+├── cloudflared/                # Cloudflare Tunnel config (activate with --profile tunnel)
+│   ├── config.yml
+│   └── credentials.json        # Never commit — listed in .gitignore
+├── logs/                       # Odoo runtime logs (gitignored)
+├── Dockerfile                  # Thin layer on platform base image
+├── db.Dockerfile               # Postgres + pgvector for local dev
+├── docker-compose.yml          # Local development stack (includes Redis + Cloudflare Tunnel)
 ├── modules.cfg                 # Modules to install/upgrade on deploy
-├── odoo.conf.template          # Odoo config rendered at startup
-├── requirements.txt
-└── requirements-dev.txt
+└── requirements.txt            # Client-specific Python packages
 ```
 
 ---
