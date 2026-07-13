@@ -40,3 +40,6 @@ pyrightconfig.json
 
 # macOS
 .DS_Store
+
+# Cloudflare Tunnel credentials — contain tunnel secret, never commit
+cloudflared/credentials.json
