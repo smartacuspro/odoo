@@ -37,6 +37,10 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./addons:/mnt/extra-addons/client
+      # smartacus_editor's static file serving resolves from this image-baked
+      # path rather than /mnt/extra-addons/client/smartacus, so mount it too
+      # to avoid manually re-copying after every JS/CSS edit in local dev.
+      - ./addons/smartacus:/mnt/extra-addons/smartacus
       - ./logs:/var/log/odoo
     restart: unless-stopped
     healthcheck:
