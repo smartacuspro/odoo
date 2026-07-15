@@ -41,6 +41,10 @@ services:
       # path rather than /mnt/extra-addons/client/smartacus, so mount it too
       # to avoid manually re-copying after every JS/CSS edit in local dev.
       - ./addons/smartacus:/mnt/extra-addons/smartacus
+      # oca/dms isn't baked into the base image yet — mount it directly from
+      # the shared ordomatics checkout so it's discoverable on addons_path
+      # (the entrypoint auto-adds each subdir of /mnt/extra-addons/oca/*).
+      - /home/moctardiallo/projects/ordomatics/odoo/addons/oca/dms:/mnt/extra-addons/oca/dms
       - ./logs:/var/log/odoo
     restart: unless-stopped
     healthcheck:
