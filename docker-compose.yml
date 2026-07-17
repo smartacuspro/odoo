@@ -45,6 +45,7 @@ services:
       # the shared ordomatics checkout so it's discoverable on addons_path
       # (the entrypoint auto-adds each subdir of /mnt/extra-addons/oca/*).
       - /home/moctardiallo/projects/ordomatics/odoo/addons/oca/dms:/mnt/extra-addons/oca/dms
+      - /home/moctardiallo/projects/ordomatics/odoo/addons/billing:/mnt/extra-addons/billing
       - ./logs:/var/log/odoo
     restart: unless-stopped
     healthcheck:
