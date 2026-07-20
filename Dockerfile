@@ -2,6 +2,15 @@ FROM registry.gitlab.com/ordomatics/clients/ordomatics:latest
 
 USER root
 
+# System dependency for OCR (pytesseract shells out to the tesseract
+# binary). tesseract-ocr-fra: French-language OCR data, needed for the
+# French administrative-form target of smartacus_editor's scan feature
+# (PV Gendarmerie, Lettre Administrative, ...). fonts-dejavu-core: covers
+# Latin Extended (é, è, ê, ç, à) for redrawing replacement text on scans.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+      tesseract-ocr tesseract-ocr-fra fonts-dejavu-core \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install client-specific Python packages
 COPY ./requirements.txt /tmp/client-requirements.txt
 RUN --mount=type=cache,target=/root/.cache/pip \
