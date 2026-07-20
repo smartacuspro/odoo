@@ -18,4 +18,4 @@ rapidfuzz>=3.6.0
 # reproducible — bump this ref deliberately when the engine changes.
 # Private repo, needs the same GITHUB_TOKEN url-rewrite as any other
 # github.com git dependency here (see Dockerfile).
-git+https://github.com/ordomatics/scanedit.git@7919446
+git+https://github.com/ordomatics/scanedit.git@79f9198
