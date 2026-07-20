@@ -6,3 +6,16 @@ requests>=2.25.0
 # library/author as the mammoth.js used client-side by the toolbar Importer,
 # for consistent conversion quality between the two import paths.
 mammoth>=1.8.0
+# Scanned-document editing (smartacus_editor's scan Edit/Preview loop) —
+# OCR word-bbox matching + image patching. opencv-python-headless (not
+# opencv-python): no GUI/X11 libs needed in a server container. Requires
+# the tesseract-ocr system package (see Dockerfile) — pytesseract just
+# shells out to that binary.
+pytesseract>=0.3.10
+opencv-python-headless>=4.9.0
+rapidfuzz>=3.6.0
+# scanedit itself: pinned to a commit, not a branch, so builds stay
+# reproducible — bump this ref deliberately when the engine changes.
+# Private repo, needs the same GITHUB_TOKEN url-rewrite as any other
+# github.com git dependency here (see Dockerfile).
+git+https://github.com/ordomatics/scanedit.git@7919446
