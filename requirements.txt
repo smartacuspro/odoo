@@ -2,6 +2,10 @@
 # Platform packages (fastapi, anthropic, openai, etc.) are already in the base image.
 # Add only packages your custom addons need that are not in the platform image.
 requests>=2.25.0
+# DOCX export (smartacus_editor's export-docx endpoint) — real table/image/
+# hyperlink support (media parts, relationships, DrawingML) instead of
+# hand-rolling that OOXML.
+python-docx>=1.1.0
 # .docx -> HTML conversion for uploaded documents (smartacus_editor). Same
 # library/author as the mammoth.js used client-side by the toolbar Importer,
 # for consistent conversion quality between the two import paths.
