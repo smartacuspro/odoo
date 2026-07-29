@@ -5,3 +5,6 @@
 [submodule "addons/smartacus"]
 	path = addons/smartacus
 	url = https://github.com/smartacuspro/smartacus.git
+[submodule "addons/ditsn"]
+	path = addons/ditsn
+	url = https://github.com/ordomatics/ditsn.git
