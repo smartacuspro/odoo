@@ -1,4 +1,4 @@
-FROM registry.gitlab.com/ordomatics/clients/ordomatics:latest
+FROM ordomatics/odoo:18.0
 
 USER root
 
