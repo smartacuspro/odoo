@@ -38,6 +38,10 @@ on:
 env:
   REGISTRY: ${{ vars.EXTERNAL_GITLAB_REGISTRY }}
   IMAGE_PATH: ${{ vars.EXTERNAL_PATH }}
+  # Docker Hub, not GitLab: GitLab's registry rejects anonymous pulls even for
+  # public projects, and ordomatics/clients/ordomatics never existed. Matches
+  # odoo-template, which is upstream of this file.
+  PLATFORM_TAG: "18.0"
 
 jobs:
   build:
@@ -69,15 +73,8 @@ jobs:
         with:
           driver: docker
 
-      - name: Log in to platform registry
-        uses: docker/login-action@v3
-        with:
-          registry: registry.gitlab.com
-          username: tenant-pull
-          password: ${{ secrets.IMAGE_ACCESS_TOKEN }}
-
       - name: Pull platform base image
-        run: docker pull registry.gitlab.com/ordomatics/clients/ordomatics:latest
+        run: docker pull ordomatics/odoo:${{ env.PLATFORM_TAG }}
 
       - name: Log in to registry
         uses: docker/login-action@v3
