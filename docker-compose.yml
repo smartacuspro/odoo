@@ -11,6 +11,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
     volumes:
       - odoo-db-data:/var/lib/postgresql/data
+    restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 10s
@@ -36,6 +37,10 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./addons:/mnt/extra-addons/client
+      # smartacus_editor's static file serving resolves from this image-baked
+      # path rather than /mnt/extra-addons/client/smartacus, so mount it too
+      # to avoid manually re-copying after every JS/CSS edit in local dev.
+      - ./addons/smartacus:/mnt/extra-addons/smartacus
       - ./logs:/var/log/odoo
     restart: unless-stopped
     healthcheck:
@@ -44,6 +49,19 @@ services:
       timeout: 10s
       retries: 10
       start_period: 120s
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --config /etc/cloudflared/config.yml --no-autoupdate run
+    volumes:
+      - ./cloudflared/config.yml:/etc/cloudflared/config.yml:ro
+      - ./cloudflared/credentials.json:/etc/cloudflared/credentials.json:ro
+    depends_on:
+      odoo:
+        condition: service_healthy
+    restart: unless-stopped
+    profiles:
+      - tunnel
 
 secrets:
   github_token:

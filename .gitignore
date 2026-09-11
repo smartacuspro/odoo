@@ -38,6 +38,13 @@ pyrightconfig.json
 # Keys / certs
 *.pem
 
+# Cloudflare Tunnel credentials — contain tunnel secret, never commit
+cloudflared/credentials.json
+
+# MCP / Playwright
+.mcp.json
+.playwright-mcp/
+
 # macOS
 .DS_Store
 
