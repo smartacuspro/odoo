@@ -1,3 +1,12 @@
 [submodule "addons/smartacus"]
 	path = addons/smartacus
 	url = https://github.com/smartacuspro/smartacus.git
+[submodule "addons/billing"]
+	path = addons/billing
+	url = https://github.com/ordomatics/billing.git
+[submodule "addons/whatsapp"]
+	path = addons/whatsapp
+	url = https://github.com/ordomatics/whatsapp.git
+[submodule "addons/telephony"]
+	path = addons/telephony
+	url = https://github.com/ordomatics/telephony.git
