@@ -46,7 +46,10 @@ on:
 env:
   REGISTRY: ${{ vars.EXTERNAL_GITLAB_REGISTRY }}
   IMAGE_PATH: ${{ vars.EXTERNAL_PATH }}
-  PLATFORM_TAG: latest
+  # Pinned, not latest: this client is on Odoo 18, and ordomatics/odoo:latest
+  # is a different image (f19e5c25 vs c84e6725) whose session_redis patch
+  # fails the container health check on Python 3.12.
+  PLATFORM_TAG: "18.0"
 
 jobs:
   build:
