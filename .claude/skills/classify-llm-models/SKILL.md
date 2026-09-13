@@ -1,1 +1,1 @@
-../../../addons/smartacus/product_llm/skills/classify-llm-models/SKILL.md
+../../../addons/smartacus/smartacus/skills/classify-llm-models/SKILL.md
