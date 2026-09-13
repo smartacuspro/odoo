@@ -10,3 +10,6 @@
 [submodule "addons/telephony"]
 	path = addons/telephony
 	url = https://github.com/ordomatics/telephony.git
+[submodule "addons/soynade"]
+	path = addons/soynade
+	url = https://github.com/ordomatics/soynade.git
