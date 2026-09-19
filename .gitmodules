@@ -13,3 +13,6 @@
 [submodule "addons/soynade"]
 	path = addons/soynade
 	url = https://github.com/ordomatics/soynade.git
+[submodule "addons/public_services"]
+	path = addons/public_services
+	url = https://github.com/ordomatics/public_services.git
