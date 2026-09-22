@@ -15,8 +15,19 @@ USER root
 # French administrative-form target of smartacus_editor's scan feature
 # (PV Gendarmerie, Lettre Administrative, ...). fonts-dejavu-core: covers
 # Latin Extended (é, è, ê, ç, à) for redrawing replacement text on scans.
+# The rest: faces wkhtmltopdf needs to render editor documents like the
+# editor does (IBM Plex Serif + metric-compatible stand-ins for the toolbar
+# fonts). Plex's extra weights also claim "Regular" and get picked over it.
 RUN apt-get update && apt-get install -y --no-install-recommends \
       tesseract-ocr tesseract-ocr-fra fonts-dejavu-core \
+      fonts-ibm-plex fonts-liberation fonts-crosextra-carlito fonts-crosextra-caladea \
+    && rm -f /usr/share/fonts/truetype/ibm-plex/IBMPlex*-Thin* \
+             /usr/share/fonts/truetype/ibm-plex/IBMPlex*-ExtraLight* \
+             /usr/share/fonts/truetype/ibm-plex/IBMPlex*-Light* \
+             /usr/share/fonts/truetype/ibm-plex/IBMPlex*-Medium* \
+             /usr/share/fonts/truetype/ibm-plex/IBMPlex*-SemiBold* \
+             /usr/share/fonts/truetype/ibm-plex/IBMPlex*-Text* \
+    && fc-cache -f \
     && rm -rf /var/lib/apt/lists/*
 
 # Install client-specific Python packages
