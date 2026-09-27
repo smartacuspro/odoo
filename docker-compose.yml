@@ -24,6 +24,9 @@ services:
       context: .
       secrets:
         - github_token
+    # The single threaded dev process idles near the 2 GB default soft limit
+    # (checked on VMS), so any job spawning threads triggered a reload.
+    command: ["odoo", "--limit-memory-soft=4294967296", "--limit-memory-hard=5368709120"]
     env_file:
       - .env
     environment:
