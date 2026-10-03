@@ -22,6 +22,10 @@ services:
   odoo:
     build:
       context: .
+      # Same Odoo version as CI (ci.yaml's PLATFORM_TAG): the Dockerfile's
+      # default, latest, is now Odoo 19.
+      args:
+        PLATFORM_TAG: "18.0"
       secrets:
         - github_token
     # The single threaded dev process idles near the 2 GB default soft limit
