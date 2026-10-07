@@ -30,6 +30,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && fc-cache -f \
     && rm -rf /var/lib/apt/lists/*
 
+# Caveat (OFL): the face handwritten passages of a scan are shown in.
+COPY ./fonts/caveat/*.ttf /usr/share/fonts/truetype/caveat/
+RUN fc-cache -f
+
 # Install client-specific Python packages
 COPY ./requirements.txt /tmp/client-requirements.txt
 # --break-system-packages (PEP 668) is only understood by pip 23.0.1+ — the
