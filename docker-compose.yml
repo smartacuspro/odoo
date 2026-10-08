@@ -36,6 +36,8 @@ services:
     environment:
       - ODOO_DEV_MODE=${ODOO_DEV_MODE:-true}
       - SKIP_MODULE_SETUP=false
+      # Wave signs each webhook with its own secret: this stack's is the dev one.
+      - WAVE_WEBHOOK_SIGNING_SECRET=${WAVE_WEBHOOK_SIGNING_SECRET_DEV:-${WAVE_WEBHOOK_SIGNING_SECRET}}
     depends_on:
       db:
         condition: service_healthy
