@@ -19,3 +19,6 @@
 [submodule "addons/kajande"]
 	path = addons/kajande
 	url = https://github.com/ordomatics/kajande.git
+[submodule "addons/product"]
+	path = addons/product
+	url = https://github.com/ordomatics/product.git
