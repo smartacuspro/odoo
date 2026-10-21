@@ -99,6 +99,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          pull: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_PATH }}:dev-latest
           platforms: linux/amd64
           build-args: |
