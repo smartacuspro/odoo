@@ -22,3 +22,6 @@
 [submodule "addons/product"]
 	path = addons/product
 	url = https://github.com/ordomatics/product.git
+[submodule "addons/fulfillment"]
+	path = addons/fulfillment
+	url = https://github.com/ordomatics/fulfillment.git
