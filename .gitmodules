@@ -25,3 +25,6 @@
 [submodule "addons/fulfillment"]
 	path = addons/fulfillment
 	url = https://github.com/ordomatics/fulfillment.git
+[submodule "addons/dispatch"]
+	path = addons/dispatch
+	url = https://github.com/ordomatics/dispatch.git
