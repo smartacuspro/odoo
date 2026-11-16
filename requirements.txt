@@ -23,3 +23,5 @@ rapidfuzz>=3.6.0
 # Private repo, needs the same GITHUB_TOKEN url-rewrite as any other
 # github.com git dependency here (see Dockerfile).
 git+https://github.com/ordomatics/scanedit.git@fccecf8
+# A static ffmpeg, to shrink generated videos under WhatsApp's 16 MB limit (whatsapp_llm).
+imageio-ffmpeg>=0.5.1
